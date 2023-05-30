@@ -1,19 +1,27 @@
 from flask import Flask, render_template, request
-from forms.car_form import CarForm
+from flask_wtf import FlaskForm
+from wtforms import SelectField
+
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'secret'
 
 
-@app.route('/')
-def hello():
-    return render_template('index.html')
+allocation = {'BMW': ['BMW1', 'BMW2', 'BMW3'], 'Audi': ['Audi1', 'Audi2', 'Audi3']}
 
 
-@app.route('/test')
-def test():
-    form = CarForm()
-    if request.method == 'POST' and form.validate():
-        print(form.test.data)
+class MyForm(FlaskForm):
+
+    brand = SelectField('Brand', choices=['BMW', 'Audi'])
+    models = SelectField('Model', choices=allocation['BMW'])
+
+
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    form = MyForm()
+    if form.validate_on_submit():
+        brand = form.brand.data
+        form.models.choices = allocation[brand]
     return render_template('test.html', form=form)
 
 
