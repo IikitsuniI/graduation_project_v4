@@ -1,81 +1,75 @@
-*{	
-    margin:0;
-    padding:0;
+*{
+	padding: 0;
+	margin: 0;
 }
 
 body{
+	width: 100vw;
+	height: 100vh;
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
 	align-items: center;
-	background: #d8e3e2;
-	color: white;
-}
-
-.content_1{
-	padding: 40px 0 0 0;
-}
-
-.content_2{
-	display: flex;
-	flex-direction: column;
 	justify-content: center;
-	align-items: center;
-	/*background: white;*/
-	width: 1000px;
-	margin: 20px;
 }
 
-.content_2 table{
-	margin: 40px;
+body h1{
+	padding: 0px 0px 40px 0;
 }
+
 
 .questionnaire{
-    display:flex;
-    flex-direction: column;
-    margin: 50px 50px;
-    width: 1200px;
-    height: auto;
-    align-items: center;
-    background: #708c8a;
-    border-radius: 15px;
-}
-
-.inp{
-	height: 30px;
-	border-radius: 5px;
-	padding-left: 15px;
-	width: 400px;
-}
-
-.left-basis {
-    height: 35px;
-    width: 200px;  
-    font-size: 1.4em;
-    /*background: red*/
-}
- 
-.right-basis {
 	display: flex;
-	/*align-items: center;*/
-	justify-content: center;
-    height: 45px;
-    /*background: red;*/
-    width: 600px;
-}
+	/*background: black;*/
+	background: #d9d9d9;
 
-.right-basis select{
-	height: 35px;
-	border-radius: 5px
-}
-
-.right-basis select{
-	width: 400px;
-}
-
-.btm_submit{
-	width: 400px;
 	border-radius: 10px;
-	font-size: 1.6em;
-	height: 45px;
+	padding: 20px;
+	width: 1100px;
+	height: 600px;
+}
+
+.left_col{
+	display: flex;
+	flex-direction: column;
+	flex:50%;
+	/*background: red;*/
+	height: 100%;
+}
+
+.left_col p{
+	font-size: 1em;
+	margin: 15px 0 10px 15px;
+}
+
+.left_col select, input{
+	height: 3vh;
+	width: 20vw;
+	background: #f2f2f2;
+	border-radius: 3px;
+	margin-left: 20px;
+	border: none;
+	outline: none;
+}
+
+.right_col{
+	display: flex;
+	flex-direction: column;
+	flex:50%;
+	/*background: red;*/
+	height: 100%;
+}
+
+.right_col p{
+	font-size: 1em;
+	margin: 15px 0 10px 15px;
+}
+
+.right_col select, input{
+	height: 3vh;
+	width: 20vw;
+	background: #f2f2f2;
+	border-radius: 3px;
+	margin-left: 20px;
+	border: none;
+	outline: none;
 }

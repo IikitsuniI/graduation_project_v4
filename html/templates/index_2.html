@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/static/css/style_2.css">
+    <title>Оценка автомобиля</title>
+</head>
+<body>
+	<h1>Заполните анкету</h1>
+	<form class="questionnaire" method="post">
+
+			<div class="left_col">
+				<p>Марка автомобиля:</p>
+				<select name="model">
+					{% for model in models %}
+						<option> {{ model }} </option>
+					{% endfor %}
+				</select>
+				<p>Модель автомобиля:</p>
+				<select name="model">
+					{% for model in models %}
+						<option> {{ model }} </option>
+					{% endfor %}
+				</select>
+				<p>Год выпуска:</p>
+				<input type="" name="">
+				<p>Пробег:</p>
+				<input type="" name="">
+				<p>Тип кузова:</p>
+				<select>
+					<option>-</option>
+					<option> Тип кузова</option>
+				</select>
+				<p>Цвет:</p>
+					<select name="color">
+					{% for color in colors %}
+						<option> {{ color }} </option>
+					{% endfor %}
+				</select>
+				<p>Руль:</p>
+				<select>
+					<option>-</option>
+					<option> Левый</option>
+					<option> Правый</option>
+				</select>
+			</div>
+			<div  class="right_col">
+				<p>ПТС:</p>
+				<select>
+					<option>-</option>
+					<option>Оригинал</option>
+					<option>Дубликат</option>
+				</select>
+				<p>Владельцев по ПТС:</p>
+				<select>
+					<option>-</option>
+					<option>1</option>
+					<option>2</option>
+					<option>3</option>
+					<option>4</option>
+					<option>Более 4</option>
+				</select>
+				<p>Состояние:</p>
+				<select>
+					<option>-</option>
+					<option>Не битый</option>
+					<option>Битый</option>
+				</select>
+				<p>Тип двигателя:</p>
+				<select>
+					<option>-</option>
+					<option>Бензин</option>
+					<option>Дизель</option>
+					<option>Гибрид</option>
+				</select>
+				<p>Коробка передач:</p>
+				<select>
+					<option>-</option>
+					<option>Механика</option>
+					<option>Автомат</option>
+					<option>Вариатор</option>
+					<option>Робот</option>
+				</select>
+				<p>Привод:</p>
+				<select>
+					<option>-</option>
+					<option>Передний</option>
+					<option>Задний</option>
+					<option>Полный</option>
+				</select>
+				<p> </p>
+				<p> </p>
+				<input type="submit" name="">
+			</div>
+	</form>
+</body>
+</html>
