@@ -2,9 +2,63 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+    <title>Оценка автомобиля</title>
 </head>
 <body>
+	<h1>Заполните анкету</h1>
+	<form class="questionnaire" method="post">
+		{{ form.csrf_token }}
+			<div class="left_col">
+				<p>Марка автомобиля:</p>
+				  	{{ form.brand(onchange="this.form.submit()") }}
+				<p>Модель автомобиля:</p>
+					{{ form.models() }}
+				<p>Год выпуска:</p>
+					{{ form.year() }}
+				<p>Пробег:</p>
+					{{ form.milage() }}
+				<p>Тип кузова:</p>
+					{{ form.types_body() }}
+				<p>Цвет:</p>
+					{{ form.colors() }}
+				<p>Руль:</p>
+					{{ form.steering_wheel() }}
+			</div>
+			<div  class="right_col">
+				<p>ПТС:</p>
 
+					{{ form.pts() }}
+				<p>Владельцев по ПТС:</p>
+
+					{{ form.owners_by_pts() }}
+				<p>Состояние:</p>
+
+					{{ form.state() }}
+				<p>Тип двигателя:</p>
+
+					{{ form.types_engine() }}
+				<p>Коробка передач:</p>
+
+					{{ form.transmission() }}
+				<p>Привод:</p>
+					{{ form.car_drive() }}
+
+				<br><br>
+				{{ form.submit() }}
+			</div>
+			<div class="right_col">
+				<p>Поколение: </p>{{ form.breed() }}
+				<p>История пробега </p>{{ form.milage_history() }}
+				<p>Объем двигателя </p>{{ form.engine_capacity() }}
+				<p>Комплектация </p>{{ form.equipment() }}
+				<p>Цена </p>{{ form.price() }}
+				<p>Модификации </p>{{ form.modification() }}
+				<p>Описание </p>{{ form.description() }}
+		</div>
+	</form>
+
+	<h1>ПРОГНОЗИРУМАЯ ЦЕНА {{ predicted_price }}</h1>
+	<h1>ОЦЕНКА ЦЕНЫ {{ result }}</h1>
 </body>
 </html>

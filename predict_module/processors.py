@@ -17,7 +17,7 @@ class QuantitativeVariableProcessor:
         return values[index]
 
     def process(self, value):
-        if value:
+        if not value or not value.isdigit():
             return self._median_value / self._max_value
         value = int(value)
         if value > self._max_value:
