@@ -17,8 +17,9 @@ class QuantitativeVariableProcessor:
         return values[index]
 
     def process(self, value):
-        if value is None:
-            return self._median_value
+        if value:
+            return self._median_value / self._max_value
+        value = int(value)
         if value > self._max_value:
             value = self._max_value
         return value / self._max_value
@@ -33,14 +34,17 @@ class QualitativeVariableProcessor:
         classes = {'None': 0}
         classes_index = 1
         for value in data_column:
+            value = str(value).strip()
             if value not in classes:
-                classes[str(value)] = classes_index
+                classes[value] = classes_index
                 classes_index += 1
         return classes
 
     def process(self, value):
+        value = str(value).strip()
         max_value = len(self._classes)
-        value = self._classes[str(value)]
+        if value in self._classes: value = self._classes[value]
+        else: value = self._classes['None']
         return value / max_value
 
 
