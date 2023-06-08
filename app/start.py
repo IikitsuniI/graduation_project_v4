@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-from app.forms.car_form import CarForm
+from app.forms.car_form import *
 from app.hander import MODELS
 from predict_module.predictor import Predictor
 from predict_module.features_predictor.predictor import *
@@ -20,6 +20,7 @@ def _get_prediction(form):
     brand = form.brand.data
     form.models.choices = MODELS[brand]
     model = form.models.data
+    print(brand, model)
     year = form.year.data
     breed = form.breed.data
     milage = form.milage.data
@@ -46,41 +47,52 @@ def _get_prediction(form):
     return predicted_price
 
 
-def _is_too_much(num1, num2):
+
+def _is_too_difference(num1, num2):
     diff = abs(num1 - num2)
     avg = (num1 + num2) / 2
     percent_diff = (diff / avg) * 100
-    return percent_diff < 20
-
-
-def _is_too_few(num1, num2):
-    diff = abs(num1 - num2)
-    avg = (num1 + num2) / 2
-    percent_diff = (diff / avg) * 100
-    return percent_diff < 20
+    return percent_diff > 20
 
 
 def clf(num1, num2):
-    num1 = int(num1.replace(' ', ''))
-    num2 = int(num2.replace(' ', ''))
-    if _is_too_much(num1, num2):
-        return 'Цена завышена'
-    elif _is_too_few(num1, num2):
-        return 'Цена занижена'
-    else:
-        return 'Оптимальная цена'
+    try:
+        num1 = int(num1.replace(' ', ''))
+        num2 = int(num2.replace(' ', ''))
+        if _is_too_difference(num1, num2) and num1 > num2:
+            return 'Цена завышена'
+        elif _is_too_difference(num1, num2) and num1 < num2:
+            return 'Цена занижена'
+        else:
+            return 'Оптимальная цена'
+    except:
+        return "Цена не указана"
 
 
 @app.route('/', methods=['GET', 'POST'])
-def test():
+def index():
     predicted_price, result = '', ''
     form = CarForm()
-    if form.validate_on_submit():
+    if form.is_submitted():
         true_price = form.price.data
         predicted_price = _get_prediction(form)
         print(predicted_price)
         result = clf(true_price, predicted_price)
     return render_template('index.html', form=form, predicted_price=predicted_price, result=result)
+
+
+@app.route('/test', methods=['GET', 'POST'])
+def test():
+    if request.method == 'POST':
+        if request.form['submit_button'] == 'Button 1':
+            # Обработка нажатия первой кнопки
+            return 'Нажата первая кнопка'
+        elif request.form['submit_button'] == 'Button 2':
+            # Обработка нажатия второй кнопки
+            return 'Нажата вторая кнопка'
+    else:
+        # Отображение формы
+        return render_template('test.html')
 
 
 if __name__ == '__main__':
