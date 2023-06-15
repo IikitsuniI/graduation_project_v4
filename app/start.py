@@ -13,8 +13,6 @@ app.config['SECRET_KEY'] = 'secret'
 predictor = Predictor()
 
 
-# todo добавить поле для модификаций иописание и цена
-# todo добавить литературу в док файл
 
 def _get_prediction(form):
     brand = form.brand.data
@@ -62,7 +60,7 @@ def clf(num1, num2):
         if _is_too_difference(num1, num2) and num1 > num2:
             return 'Цена завышена'
         elif _is_too_difference(num1, num2) and num1 < num2:
-            return 'Цена занижена'
+            return 'Отличная цена'
         else:
             return 'Оптимальная цена'
     except:

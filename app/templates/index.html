@@ -3,13 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="/static/css/style.css">
-    <title>Оценка автомобиля</title>
+    <title>Auto appraiser</title>
 </head>
 <body>
+	<header>
+		<p>Auto appraiser</p>
+		<div> </div>
+	</header>
 	<h1>Заполните анкету</h1>
 	<form class="questionnaire" method="post">
 		{{ form.csrf_token }}
-			<div class="left_col">
+			<div class="col">
 				<p>Марка автомобиля:</p>
 				  	{{ form.brand(onchange="this.form.submit()") }}
 				<p>Модель автомобиля:</p>
@@ -25,9 +29,8 @@
 				<p>Руль:</p>
 					{{ form.steering_wheel() }}
 			</div>
-			<div  class="right_col">
+			<div  class="col">
 				<p>ПТС:</p>
-
 					{{ form.pts() }}
 				<p>Владельцев по ПТС:</p>
 
@@ -43,22 +46,22 @@
 					{{ form.transmission() }}
 				<p>Привод:</p>
 					{{ form.car_drive() }}
-
-				<br><br>
+				<p> Нажмите на кноппу ниже: </p>
 				{{ form.submit() }}
 			</div>
-			<div class="right_col">
+			<div class="col">
 				<p>Поколение: </p>{{ form.breed() }}
 				<p>История пробега </p>{{ form.milage_history() }}
 				<p>Объем двигателя </p>{{ form.engine_capacity() }}
 				<p>Комплектация </p>{{ form.equipment() }}
 				<p>Цена </p>{{ form.price() }}
 				<p>Модификации </p>{{ form.modification() }}
-				<p>Описание </p>{{ form.description() }}
-		</div>
+				<p>Описание </p> <input class="form-description"> 
+			</div>
 	</form>
-
-	<h1>ПРОГНОЗИРУМАЯ ЦЕНА {{ predicted_price }}</h1>
-	<h1>ОЦЕНКА ЦЕНЫ {{ result }}</h1>
+	<div class="result">
+	<p>Прогнозируемая цена: {{ predicted_price }}</p>
+	<p>Оценка цены: {{ result }}</p>
+	</div>
 </body>
 </html>

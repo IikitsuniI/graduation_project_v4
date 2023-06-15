@@ -2,7 +2,7 @@ from pymongo import MongoClient
 
 
 client = MongoClient()
-collection = client['car_price_predictor']['data_processed']
+collection = client['db_name']['data_processed']
 
 
 def get_unique_values(field_name):
